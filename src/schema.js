@@ -34,21 +34,21 @@ module.exports = new GraphQLSchema({
     description: "...",
 
     fields: () => ({
-      artist: {
-        type: ArtistType,
+      artists: {
+        type: new GraphQLList(ArtistType),
         args: {
           name: { type: GraphQLString }
         },
         resolve: (root, args, context) => {
           return context.access_token
             .then(token => {
-              return fetch(`https://api.spotify.com/v1/search?q=${args.name}&type=artist`, {
+              return fetch(`https://api.spotify.com/v1/search?q=${args.name}&type=artist&limit=5`, {
                 headers: {
                   'Authorization': `Bearer ${token}`,
                 },
               })
                 .then(response => response.json())
-                .then(json => json.artists.items[0])
+                .then(json => json.artists.items)
             });
         }
       }
