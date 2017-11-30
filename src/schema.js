@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const { GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLList, GraphQLInt } = require("graphql");
 const grabToken = require('./grabToken');
-const Artist = require('./models/Artist');
+const Artist = require('./types/Artist');
 const { API_URL } = require('./config');
 
 const defaults = {
