@@ -1,8 +1,9 @@
+require('dotenv').config();
 const btoa = require('btoa');
 const fetch = require("node-fetch");
 
-const client = '';
-const secret = '';
+const client = process.env.SPOTIFY_CLIENT;
+const secret = process.env.SPOTIFY_SECRET;
 const base64Encoded = btoa(`${client}:${secret}`);
 
 function fetchToken() {
@@ -24,4 +25,4 @@ async function getAccessToken() {
   return json.access_token;
 }
 
-module.exports = getAccessToken();
+module.exports = getAccessToken;
